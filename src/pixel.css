@@ -1,0 +1,332 @@
+/* ---- Pixel-art theme for the USDC transfer app ---- */
+
+:root {
+  --px-bg: #0f0f1b;
+  --px-bg-2: #171728;
+  --px-panel: #21243a;
+  --px-panel-line: #33375a;
+  --px-ink: #0a0a12;
+  --px-text: #e9e9f5;
+  --px-muted: #9a9ac2;
+  --px-accent: #2775ca; /* USDC blue */
+  --px-accent-2: #4d8ff0;
+  --px-green: #3bd16f;
+  --px-yellow: #ffd93d;
+  --px-red: #ff5b5b;
+
+  image-rendering: pixelated;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 3px, rgba(0, 0, 0, 0.12) 3px 4px),
+    radial-gradient(circle at 50% 0%, var(--px-bg-2), var(--px-bg));
+  font-family: "Press Start 2P", ui-monospace, "Courier New", monospace;
+  color: var(--px-text);
+  -webkit-font-smoothing: none;
+}
+
+/* ---- Stage (bubble + card stacked) ---- */
+.px-stage {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Thought balloon (balance) ---- */
+.px-bubble {
+  position: relative;
+  align-self: flex-end;
+  max-width: 82%;
+  margin: 0 28px 50px 0;
+  padding: 16px 20px;
+  text-align: center;
+  font-size: 9px;
+  line-height: 1.9;
+  color: var(--px-ink);
+  background: #fdfdff;
+  border: 4px solid var(--px-ink);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.35);
+}
+
+.px-bubble-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.px-bubble-amount {
+  display: block;
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--px-accent);
+}
+
+/* trailing thought puffs pointing down toward the card */
+.px-bubble::before,
+.px-bubble::after {
+  content: "";
+  position: absolute;
+  background: #fdfdff;
+  border: 3px solid var(--px-ink);
+  left: 22px;
+}
+.px-bubble::before {
+  width: 14px;
+  height: 14px;
+  bottom: -22px;
+}
+.px-bubble::after {
+  width: 8px;
+  height: 8px;
+  bottom: -38px;
+  left: 14px;
+}
+
+/* pixel coin renders crisp, no smoothing */
+.px-coin-svg {
+  flex: none;
+  display: block;
+  image-rendering: pixelated;
+}
+
+/* ---- Card ---- */
+.px-card {
+  width: 100%;
+  background: var(--px-panel);
+  border: 4px solid var(--px-ink);
+  box-shadow: 10px 10px 0 var(--px-ink);
+  padding: 28px 24px 30px;
+}
+
+/* ---- Send / Receive tabs ---- */
+.px-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+/* Keep the card the same height whichever tab is active. */
+.px-tab-panel {
+  min-height: 232px;
+}
+.px-tab {
+  flex: 1;
+  padding: 11px 8px;
+  font-family: inherit;
+  font-size: 9px;
+  color: var(--px-muted);
+  background: var(--px-bg);
+  border: 3px solid var(--px-panel-line);
+  cursor: pointer;
+}
+.px-tab--active {
+  color: #fff;
+  background: var(--px-accent);
+  border-color: var(--px-ink);
+}
+
+/* ---- Receive address box ---- */
+.px-receive-addr {
+  font-size: 8px;
+  line-height: 1.9;
+  word-break: break-all;
+  color: var(--px-green);
+  background: var(--px-bg);
+  border: 3px solid var(--px-panel-line);
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.px-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0 0 4px;
+  color: var(--px-text);
+  text-shadow: 2px 2px 0 var(--px-ink);
+}
+
+.px-coin {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  background: var(--px-yellow);
+  color: var(--px-ink);
+  border: 3px solid var(--px-ink);
+  font-size: 12px;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
+}
+
+.px-sub {
+  font-size: 8px;
+  line-height: 2;
+  color: var(--px-muted);
+  margin: 6px 0 26px;
+}
+
+/* ---- Labels + inputs ---- */
+.px-field {
+  margin-bottom: 18px;
+}
+
+.px-label {
+  display: block;
+  font-size: 9px;
+  line-height: 1.9;
+  color: var(--px-muted);
+  margin-bottom: 10px;
+}
+
+.px-input {
+  width: 100%;
+  padding: 12px 12px;
+  font-family: inherit;
+  font-size: 9px;
+  color: var(--px-text);
+  background: var(--px-bg);
+  border: 3px solid var(--px-panel-line);
+  outline: none;
+}
+
+.px-input::placeholder {
+  color: #5b5f85;
+}
+
+.px-input:focus {
+  border-color: var(--px-accent-2);
+  box-shadow: 0 0 0 3px rgba(77, 143, 240, 0.25);
+}
+
+/* ---- Buttons ---- */
+.px-btn {
+  display: inline-block;
+  width: 100%;
+  padding: 14px 16px;
+  font-family: inherit;
+  font-size: 11px;
+  color: #fff;
+  background: var(--px-accent);
+  border: 4px solid var(--px-ink);
+  box-shadow: 5px 5px 0 var(--px-ink);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.03s linear, box-shadow 0.03s linear;
+}
+
+.px-btn:hover {
+  background: var(--px-accent-2);
+}
+
+.px-btn:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0 0 0 var(--px-ink);
+}
+
+.px-btn:disabled {
+  background: #3a3d5c;
+  color: #7d80a3;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 5px 5px 0 var(--px-ink);
+}
+
+.px-btn--green {
+  background: var(--px-green);
+  color: var(--px-ink);
+}
+.px-btn--green:hover {
+  background: #57e089;
+}
+
+.px-btn--warn {
+  background: var(--px-yellow);
+  color: var(--px-ink);
+  font-size: 9px;
+  padding: 10px 12px;
+  box-shadow: 4px 4px 0 var(--px-ink);
+}
+.px-btn--warn:hover {
+  background: #ffe066;
+}
+
+/* ---- Account chip ---- */
+.px-account {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+  color: var(--px-green);
+  background: var(--px-bg);
+  border: 3px solid var(--px-panel-line);
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  word-break: break-all;
+}
+
+.px-dot {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  background: var(--px-green);
+  box-shadow: 0 0 8px var(--px-green);
+}
+
+/* ---- Status boxes ---- */
+.px-status {
+  margin-top: 20px;
+  padding: 12px;
+  font-size: 8px;
+  line-height: 1.8;
+  border: 3px solid var(--px-panel-line);
+  background: var(--px-bg);
+  word-break: break-all;
+}
+
+.px-status b {
+  color: var(--px-text);
+}
+
+.px-status--pending {
+  border-color: var(--px-yellow);
+  color: var(--px-yellow);
+}
+.px-status--ok {
+  border-color: var(--px-green);
+  color: var(--px-green);
+}
+.px-status--err {
+  border-color: var(--px-red);
+  color: var(--px-red);
+}
+
+.px-link {
+  color: var(--px-accent-2);
+}
+
+/* blinking cursor-ish accent for pending */
+.px-blink {
+  animation: px-blink 1s steps(2, start) infinite;
+}
+@keyframes px-blink {
+  to {
+    visibility: hidden;
+  }
+}
